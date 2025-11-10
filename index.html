@@ -120,7 +120,8 @@
                v-for="lesson in orderedFilteredLessons"
                :key="lesson._id || lesson.subject">
             <div class="card subject-card" @click="selectSubject(lesson)">
-              <img :src="lesson.image" class="subject-thumb" :alt="lesson.subject + ' image'">
+              <!-- ✅ Updated line below -->
+              <img :src="imageUrl(lesson.image)" class="subject-thumb" :alt="lesson.subject + ' image'">
               <div class="card-body text-center">
                 <h6 class="card-title mb-1">{{ lesson.subject }}</h6>
                 <p class="card-text text-muted mb-0" style="font-size:.9rem">
