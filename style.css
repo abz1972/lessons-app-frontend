@@ -1,0 +1,37 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Arial', sans-serif;
+    color: #1f2937;
+  }
+  
+  .basket {
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  /* Subject cards */
+  .subject-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background-color: #ffffff;
+    border-left: 8px solid transparent;
+  }
+  .subject-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  }
+  
+  /* Make images neat on cards */
+  .card-img-top {
+    height: 150px;
+    object-fit: contain;
+    padding: 10px;
+  }
+  
+  /* Search highlight */
+  .highlight {
+    background-color: yellow;
+    font-weight: bold;
+  }
+  
+  
