@@ -38,7 +38,7 @@ const app = Vue.createApp({
       suggestions: []
     };
   },
-
+  
   computed: {
     // I filter and sort all lessons by what the user types
     orderedFilteredLessons() {
@@ -112,27 +112,14 @@ const app = Vue.createApp({
     // Change between my app’s views (Subjects, Locations, Checkout)
     go(page) { this.view = page; },
 
-    // Compute the backend origin once (I strip "/api" off apiBase)
-    backendOrigin() {
-      try {
-        const u = new URL(this.apiBase);
-        return u.origin; // e.g. https://lessons-app-backend.onrender.com
-      } catch {
-        return '';
-      }
-    },
-
-    // Turn "images/maths.png" into a full backend URL
-    imageUrl(src) {
-      if (!src) return '';
-      // If already absolute (http/https), just use it
-      if (/^https?:\/\//i.test(src)) return src;
-      // If it begins with "images/", serve it from the backend /images
-      if (src.startsWith('images/')) {
-        return `${this.backendOrigin()}/${src}`;
-      }
-      // Fallback: return the original value
-      return src;
+    // --- Image path normalizer for live hosting ---
+    // I make sure lesson.image like "images/maths.png" becomes "/images/maths.png"
+    // so it loads from the site root on the deployed frontend.
+    normalizeImage(p) {
+      if (!p) return '';
+      if (/^https?:\/\//i.test(p)) return p;      // already absolute URL
+      if (p.startsWith('/')) return p;            // already root-based
+      return '/' + p.replace(/^\.?\/*/, '');      // ensure exactly one leading slash
     },
 
     // Fetch lessons from my backend API

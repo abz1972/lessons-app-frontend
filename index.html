@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>Lessons to Learn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Make all relative URLs resolve from site root -->
+  <base href="/" />
 
   <!-- I’m using Bootstrap for layout and Font Awesome for icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -120,8 +122,8 @@
                v-for="lesson in orderedFilteredLessons"
                :key="lesson._id || lesson.subject">
             <div class="card subject-card" @click="selectSubject(lesson)">
-              <!-- ✅ Updated line below -->
-              <img :src="imageUrl(lesson.image)" class="subject-thumb" :alt="lesson.subject + ' image'">
+              <!-- ✅ Use the same normalizer as app.js -->
+              <img :src="normalizeImage(lesson.image)" class="subject-thumb" :alt="lesson.subject + ' image'">
               <div class="card-body text-center">
                 <h6 class="card-title mb-1">{{ lesson.subject }}</h6>
                 <p class="card-text text-muted mb-0" style="font-size:.9rem">
